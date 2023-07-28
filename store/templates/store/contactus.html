@@ -1,0 +1,72 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<title>{% block title %}Furnitureland - Contact Us{% endblock %}</title>
+
+{% block content%}
+  <style>
+    body{
+      background:url("{%static 'images/image.jfif'%}");
+      background-size: cover;
+    }
+  </style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+<div class="centerdiv">
+    <h1 class="head">Contact Us</h1>
+    <div class="row content">
+        <div class="col-md-6" style="padding: 0 10px;">
+            <div class="box">
+                <div class="icon">
+                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                </div>
+                <div class="text">
+                    <h3>Address</h3>
+                    <p>35, Rattanbazaar, Park Town, India</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icon"><i class="fas fa-phone-alt fa-lg"></i></div>
+                <div class="text">
+                    <h3>Phone Number</h3>
+                    <p>+91 8556464646</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icon">
+                    <i class="fas fa-envelope fa-lg"></i>
+                </div>
+                <div class="text">
+                    <h3>Email</h3>
+                    <p>efurniture123@gmail.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 contactform">
+            <form action="{% url 'getinfo' %}" method="POST">
+            {% csrf_token %}
+                <h2>Send Message</h2>
+                <div class="inputBox">
+                        <input type="text" name="fullname" required = "required">
+                        <span>Full Name</span>
+                </div>
+                <div class="inputBox">
+                        <input type="email" name="email" required = "required">
+                        <span>Email</span>
+                </div>
+                <div class="inputBox">
+                        <textarea name="message" required></textarea>
+                        <span>Enter your Message</span>
+                </div>
+                <button type="submit" class="button" >Send Message</button>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content%}
+
+

@@ -1,0 +1,65 @@
+{% extends 'store/main.html' %}
+{% load static %}
+<html>
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<title>{% block title %}Furnitureland - Sign Up{% endblock %}</title>
+{% block content %}
+<style>
+    body{
+      background-color:lightBlue;
+    }
+  </style>
+
+<div class="container myCard" >    
+    <div class="mycontainer">
+        <h1 class="title">Create an account</h1>
+        <div class="content">
+            <form method="POST">
+                {{msg}}
+                {% csrf_token %}
+                <div class="user-details">      
+                    <div class="input-box">
+                        <span class="details">Full Name:</span>
+                        <input type="text" name="naam" pattern="[A-Za-z\s]{4,9}" title="Name should only contains alphabets and 4-9 characters in length" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Username:</span>
+                        <input type="text" name="uname" pattern="[a-z]{4,8}" title="Usernames must be lowercase and 4-8 characters in length"
+                        placeholder="Enter your username" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email:</span>
+                        <input type="email" name="emid" placeholder="Enter your Email" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Password:</span>
+                        <input type="password" name="passw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="Register">
+                </div>
+                {% comment %} <button type="submit" class="button" value="Register" >Create Account</button> {% endcomment %}
+                {% comment %} {{form.errors}} {% endcomment %}
+                <div class="login_link">
+                    Already have an account? <a href="{% url 'login' %}">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% comment %} <script>
+    var form_fields = document.getElementsByTagName('input');
+    form_fields[3].placeholder= 'Enter firstname';
+    form_fields[4].placeholder= 'Enter lastname';
+    form_fields[5].placeholder= 'Enter your unique username';
+    form_fields[6].placeholder= 'Enter email';
+    form_fields[7].placeholder= 'Enter password';
+    form_fields[8].placeholder= 'Confirm password';
+</script> {% endcomment %}
+
+{% endblock content %}
+</html>

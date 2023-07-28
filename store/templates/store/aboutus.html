@@ -1,0 +1,23 @@
+{% extends 'store/main.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<title>{% block title %}Furnitureland - About Us{% endblock %}</title>
+
+{% block content%}
+  <style>
+    body{
+      background:url("{%static 'images/aboutus.jpg'%}");
+      background-size: cover;
+    }
+  </style>
+    <div class="about">
+        <div class="aboutus-detail">
+            <h2>About Us</h2>
+            <p>Hello everyone ! 
+            Furnitureland by Design is an online furniture/home decor retailer. We began as a regular Brick and Mortar Furnitureland located in India offering our customers brand name furniture at affordable prices. Our retail locations are proudly serving residents of India.
+            Home Furniture by Design website is aimed to provide you with the latest in home furnishings, home decor and accessories at a price you can afford. We always carry products that will be the focus of your home's décor with superior selection, value, and quality.
+            buyers face some issues regarding prices and lack of information while offline shopping.
+            </p>
+        </div>
+    </div>
+{% endblock content%}
