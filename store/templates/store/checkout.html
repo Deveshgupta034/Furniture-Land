@@ -1,84 +1,135 @@
 {% extends 'store/main.html' %}
 {% load static %}
+
+{% block title %}Checkout | Furnitureland Atelier{% endblock %}
+
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-lg-6">
+<div class="container py-4 my-3" style="max-width: 1160px;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <span class="atelier-badge">White-Glove Order</span>
+            <h2 style="font-family: var(--font-heading); font-size: 2.2rem; letter-spacing: -0.02em; margin-bottom: 4px;">Secure Checkout</h2>
+        </div>
+        <a class="btn-luxury-outline" href="{% url 'cart' %}" style="padding: 8px 20px; font-size: 0.88rem;">
+            <i class="fas fa-arrow-left me-2"></i> Return to Bag
+        </a>
+    </div>
+
+    <div class="row g-4">
+        <!-- Delivery & Payment Information Column -->
+        <div class="col-lg-7">
             <div class="box-element" id="form-wrapper">
                 <form id="form">
                     <div id="user-info">
-                        <div class="form-field">
-                            <input required class="form-control" type="text" name="name" placeholder="Name..">
+                        <h5 style="font-family: var(--font-heading); margin-bottom: 16px;">Contact Information</h5>
+                        <div class="row g-3">
+                            <div class="col-md-6 custom-form-group">
+                                <label class="custom-form-label">Full Name</label>
+                                <input required class="custom-form-control" type="text" name="name" placeholder="E.g. Evelyn Vance">
+                            </div>
+                            <div class="col-md-6 custom-form-group">
+                                <label class="custom-form-label">Email Address</label>
+                                <input required class="custom-form-control" type="email" name="email" placeholder="evelyn@domain.com">
+                            </div>
                         </div>
-                        <div class="form-field">
-                            <input required class="form-control" type="email" name="email" placeholder="Email..">
-                        </div>
+                        <hr class="my-4" style="opacity: 0.1;">
                     </div>
         
                     <div id="shipping-info">
-                        <hr>
-                        <p>Shipping Information:</p>
-                        <hr>
-                        <div class="form-field">
-                            <input class="form-control" type="text" name="address" placeholder="Address..">
-                        </div>
-                        <div class="form-field">
-                            <input class="form-control" type="text" name="city" placeholder="City..">
-                        </div>
-                        <div class="form-field">
-                            <input class="form-control" type="text" name="state" placeholder="State..">
-                        </div>
-                        <div class="form-field">
-                            <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+                        <h5 style="font-family: var(--font-heading); margin-bottom: 8px;">White-Glove Delivery Address</h5>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px;">
+                            Our dedicated logistics curators will contact you to schedule room-of-choice placement.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-12 custom-form-group">
+                                <label class="custom-form-label">Street Address</label>
+                                <input class="custom-form-control" type="text" name="address" placeholder="124 Strandvägen, Apt 4B">
+                            </div>
+                            <div class="col-md-5 custom-form-group">
+                                <label class="custom-form-label">City</label>
+                                <input class="custom-form-control" type="text" name="city" placeholder="Copenhagen">
+                            </div>
+                            <div class="col-md-4 custom-form-group">
+                                <label class="custom-form-label">State / Province</label>
+                                <input class="custom-form-control" type="text" name="state" placeholder="Capital Region">
+                            </div>
+                            <div class="col-md-3 custom-form-group">
+                                <label class="custom-form-label">Postal Code</label>
+                                <input class="custom-form-control" type="text" name="zipcode" placeholder="114 56">
+                            </div>
                         </div>
                     </div>
 
-
-                    <hr>
-                    <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+                    <div class="pt-3">
+                        <input id="form-button" class="btn-luxury w-100" style="padding: 14px; font-size: 1rem;" type="submit" value="Proceed to Payment Options &rarr;">
+                    </div>
                 </form>
-                <br>
-                <div class="box-element hidden" id="payment-info">
-                    <small>Paypal Options</small>
-                    <div id="paypal-button-container"></div>
-                    <!--<button id="make-payment">Make Payment</button>-->
+
+                <div class="mt-4 pt-3 border-top hidden" id="payment-info" style="border-color: var(--border-subtle) !important;">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <span class="atelier-badge mb-0">Secure Gateway</span>
+                        <span style="font-size: 0.82rem; color: var(--text-secondary);"><i class="fas fa-lock me-1 text-success"></i> 256-bit Encrypted</span>
+                    </div>
+                    <div id="paypal-button-container" class="mt-2"></div>
                 </div>
             </div>
-            
         </div>
 
-        <div class="col-lg-6">
+        <!-- Order Summary Column -->
+        <div class="col-lg-5">
             <div class="box-element">
-                <a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
-                <hr>
-                <h3>Order Summary</h3>
-                <hr>
-                {% for item in items %}
-                <div class="cart-row">
-                    <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
-                    <div style="flex:2"><p>{{item.product.name}}</p></div>
-                    <div style="flex:1"><p>${{item.product.price}}</p></div>
-                    <div style="flex:1"><p>x{{item.quantity}}</p></div>
+                <div class="d-flex justify-content-between align-items-baseline mb-3">
+                    <h4 style="font-family: var(--font-heading); margin: 0;">Order Summary</h4>
+                    <span class="badge bg-secondary" style="border-radius: var(--radius-pill); font-weight: 500;">{{order.get_cart_items}} pieces</span>
                 </div>
-                {% endfor %}
-                <h5>Items:   {{order.get_cart_items}}</h5>
-                <h5>Total:   ${{order.get_cart_total|floatformat:2}}</h5>
+                <hr style="opacity: 0.1;">
+
+                <div class="pe-1" style="max-height: 380px; overflow-y: auto;">
+                    {% for item in items %}
+                    <div class="d-flex align-items-center gap-3 py-3 border-bottom" style="border-color: var(--border-subtle) !important;">
+                        <div style="width: 64px; height: 64px; background: #FAF8F5; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 4px;">
+                            <img class="row-image" src="{{item.product.imageURL}}" alt="{{item.product.name}}" style="max-height: 56px; max-width: 100%; object-fit: contain;">
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 style="margin: 0; font-size: 0.92rem; font-weight: 600;">{{item.product.name}}</h6>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">Qty: {{item.quantity}} &times; ${{item.product.price|floatformat:2}}</span>
+                        </div>
+                        <div class="text-end">
+                            <span style="font-weight: 700; font-size: 0.95rem;">${{item.get_total|floatformat:2}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="pt-4">
+                    <div class="d-flex justify-content-between mb-2" style="font-size: 0.9rem; color: var(--text-secondary);">
+                        <span>Subtotal</span>
+                        <span>${{order.get_cart_total|floatformat:2}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2" style="font-size: 0.9rem; color: var(--text-secondary);">
+                        <span>White-Glove Delivery</span>
+                        <span class="text-success fw-bold">Complimentary</span>
+                    </div>
+                    <div class="d-flex justify-content-between pt-3 mt-2 border-top" style="border-color: var(--border-subtle) !important;">
+                        <span style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;">Total Due</span>
+                        <span style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; color: var(--accent-primary);">${{order.get_cart_total|floatformat:2}}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <script src="https://www.paypal.com/sdk/js?client-id=AdVLsSuDvDeRM10g6Ko8304mfq9K1oPehRZkjRcSxu73bgljQEZJo6J2GL7G3JiHaJe9sdEH6-_F-wed&currency=USD&disable-funding=credit"></script>
 <script>
-    
-    var total = '{{order.get_cart_total}}'
-    // Render the PayPal button into #paypal-button-container
-    paypal.Buttons({
+    var total = '{{order.get_cart_total}}';
 
-    style:{
-        color:'blue',
-        shape:'rect'
-    }, 
-        // Set up the transaction
+    paypal.Buttons({
+        style: {
+            color: 'gold',
+            shape: 'pill',
+            label: 'pay'
+        },
         createOrder: function(data, actions) {
             return actions.order.create({
                 purchase_units: [{
@@ -88,106 +139,83 @@
                 }]
             });
         },
-
-        // Finalize the transaction
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
-                submitFormData()    
+                submitFormData();
             });
         }
-
     }).render('#paypal-button-container');
-</script>
 
+    var shipping = '{{order.shipping}}';
 
-
-<script type="text/javascript" >
-
-    var shipping = '{{order.shipping}}'
-    var total = '{{order.get_cart_total}}'
-
-
-    if(shipping == 'False'){
-        document.getElementById('shipping-info').innerHTML = ''
+    if (shipping == 'False') {
+        var sInfo = document.getElementById('shipping-info');
+        if (sInfo) sInfo.innerHTML = '';
     }
 
-    if(user != 'AnonymousUser'){
-        document.getElementById('user-info').innerHTML = ''
+    if (user != 'AnonymousUser') {
+        var uInfo = document.getElementById('user-info');
+        if (uInfo) uInfo.innerHTML = '';
     }
 
-    if(shipping == 'False' && user != 'AnonymousUser'){
+    if (shipping == 'False' && user != 'AnonymousUser') {
         document.getElementById('form-wrapper').classList.add('hidden');
         document.getElementById('payment-info').classList.remove('hidden');
     }
 
+    var form = document.getElementById('form');
 
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('form-button').classList.add("hidden");
+        document.getElementById('payment-info').classList.remove("hidden");
+    });
 
-
-    var form = document.getElementById('form')
-
-    form.addEventListener('submit',function(e){
-        e.preventDefault()
-        console.log('form submitted...')
-        document.getElementById('form-button').classList.add("hidden")
-        document.getElementById('payment-info').classList.remove("hidden")
-    })
-    /*
-    document.getElementById('make-payment').addEventListener('click', function(e){
-        submitFormData()
-    })*/
-
-    function submitFormData(){
-        console.log('Payment button clicked');
-
+    function submitFormData() {
         var userFormData = {
-            'name':null,
-            'email':null,
-            'total':total,
-        }
+            'name': null,
+            'email': null,
+            'total': total,
+        };
 
         var shippingInfo = {
-            'address':null,
-            'city':null,
-            'state':null,
-            'zipcode':null,
+            'address': null,
+            'city': null,
+            'state': null,
+            'zipcode': null,
+        };
 
+        if (shipping != 'False' && form.address) {
+            shippingInfo.address = form.address.value;
+            shippingInfo.city = form.city.value;
+            shippingInfo.state = form.state.value;
+            shippingInfo.zipcode = form.zipcode.value;
         }
 
-        if(shipping != 'False'){
-            shippingInfo.address = form.address.value
-            shippingInfo.city = form.city.value
-            shippingInfo.state = form.state.value
-            shippingInfo.zipcode = form.zipcode.value
+        if (user == 'AnonymousUser' && form.name) {
+            userFormData.name = form.name.value;
+            userFormData.email = form.email.value;
         }
 
-        
-        if(user == 'AnonymousUser'){
-            userFormData.name = form.name.value
-            userFormData.email = form.email.value
-        }
-
-
-
-        var url = '/process_order/'
-        fetch(url,{
-            method:'POST',
-            headers:{
+        var url = '/process_order/';
+        fetch(url, {
+            method: 'POST',
+            headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFTOKEN':csrftoken,
+                'X-CSRFToken': csrftoken,
             },
-            body:JSON.stringify({'form': userFormData,'shipping': shippingInfo})
+            body: JSON.stringify({'form': userFormData, 'shipping': shippingInfo})
         })
-
         .then((response) => response.json())
         .then((data) => {
-            console.log('Success:', data);
-            cart={}
-            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/" 
-            window.location.href= "{% url 'store' %}"
-            message.info('Transaction completed');
+            cart = {};
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
+            window.location.href = "{% url 'store' %}";
         })
+        .catch((error) => {
+            console.error('Error submitting order:', error);
+            window.location.href = "{% url 'store' %}";
+        });
     }
 </script>
-
-
 {% endblock content %}

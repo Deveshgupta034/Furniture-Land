@@ -1,34 +1,167 @@
 {% extends 'store/main.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
-<title>{% block title %}{{product.name}}{% endblock %}</title>
+{% block title %}{{product.name}} | Furnitureland Atelier{% endblock %}
 
 {% block content %}
-<div class="container-xxl mx-auto" style="margin:150px 0; box-shadow:0px 0px 20px 1px lightgrey; width: 1500px; border-radius: 5px ">
-	<div class="row m-5" style="padding-left: 160px; ">
-		<div class="col-md-5" style="height:500px; margin-right: 75px; padding:0px auto;">
-			<div class="row mx-auto" style="width: 560px; padding-top: 50px; ;">
-				<img class="thumbnail" src="{{product.imageURL}}" style="height:400px; box-shadow:0px 0px 20px 1px lightgrey" >
-			</div>
-		</div>
-		<div class="col-md-6 p-5 ">
-			<h4>{{product.name}}</h4>
-			<h5><strong>${{product.price}}</strong></h5>
-			<hr>
-			<h6>{{product.desc}}</h6>
 
-			<br/>
-			<div class="row" style="padding:10px 25px;">
-				{% if request.session.name %}
-				<button data-product={{product.id}} data-action="add"  class="btn btn-outline-secondary update-cart">Add to Cart</button>
-				{% endif %}
-			</div>
-			
-		</div>
-	</div>
+<div class="product-detail-layout">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb" style="background: transparent; padding: 0; font-size: 0.85rem;">
+            <li class="breadcrumb-item"><a href="{% url 'store' %}" style="color: var(--text-tertiary);">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'store' %}#collection" style="color: var(--text-tertiary);">Atelier Collection</a></li>
+            <li class="breadcrumb-item active" aria-current="page" style="color: var(--text-primary); font-weight: 600;">{{product.name}}</li>
+        </ol>
+    </nav>
+
+    <div class="row g-5 align-items-start">
+        <!-- Left: Product Image / Showcase (Matching Mockup 2) -->
+        <div class="col-lg-6">
+            <div class="detail-gallery-box">
+                <img src="{{product.imageURL}}" alt="{{product.name}}" id="main-product-image">
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-center mt-3 px-2 text-muted" style="font-size: 0.8rem;">
+                <span><i class="fas fa-truck-moving me-1 text-warning"></i> Complimentary White-Glove Delivery</span>
+                <span><i class="fas fa-shield-alt me-1 text-success"></i> 10-Yr Structural Warranty</span>
+            </div>
+        </div>
+
+        <!-- Right: Editorial Details, Swatches, Purchase, & Accordions -->
+        <div class="col-lg-6 detail-info-col">
+            <span class="atelier-badge"><i class="fas fa-feather-alt me-1"></i> Living Atelier</span>
+            
+            <h1 class="detail-product-name">{{product.name}}</h1>
+            
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <div style="color: #D4AF37; font-size: 0.9rem;">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">4.9</span>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">(142 verified reviews)</span>
+            </div>
+
+            <div class="detail-price">
+                ${{product.price|floatformat:2}}
+            </div>
+
+            <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1rem; margin-bottom: 28px;">
+                {{product.desc|default:"Sculpted with continuous fluid geometry, balancing generous cushioning with slender architectural proportions. Finished in custom tactile textiles selected for residential harmony."}}
+            </p>
+
+            <!-- Textile / Finish Swatches -->
+            <div class="mb-4">
+                <div class="swatch-group-label">
+                    SELECT TEXTILE: <span id="selected-fabric-name" style="color: var(--text-primary); font-weight: 700;">Sand Bouclé</span>
+                </div>
+                <div class="swatches-row">
+                    <div class="swatch-item" onclick="selectFabric('Sand Bouclé', this)">
+                        <div class="swatch-circle active">
+                            <div class="swatch-color" style="background-color: #E8E3DC; border: 1px solid rgba(0,0,0,0.1);"></div>
+                        </div>
+                        <span class="swatch-label">Sand</span>
+                    </div>
+
+                    <div class="swatch-item" onclick="selectFabric('Oatmeal Linen', this)">
+                        <div class="swatch-circle">
+                            <div class="swatch-color" style="background-color: #D4C5B3; border: 1px solid rgba(0,0,0,0.1);"></div>
+                        </div>
+                        <span class="swatch-label">Oatmeal</span>
+                    </div>
+
+                    <div class="swatch-item" onclick="selectFabric('Espresso Velvet', this)">
+                        <div class="swatch-circle">
+                            <div class="swatch-color" style="background-color: #3F332C;"></div>
+                        </div>
+                        <span class="swatch-label">Espresso</span>
+                    </div>
+
+                    <div class="swatch-item" onclick="selectFabric('Nordic Olive', this)">
+                        <div class="swatch-circle">
+                            <div class="swatch-color" style="background-color: #5D6353;"></div>
+                        </div>
+                        <span class="swatch-label">Olive</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex flex-wrap gap-3 align-items-center mb-5">
+                <button data-product="{{product.id}}" data-action="add" class="btn-luxury update-cart" style="padding: 14px 38px; font-size: 1rem;">
+                    <i class="fas fa-shopping-bag me-2"></i> Add to Bag &mdash; ${{product.price|floatformat:2}}
+                </button>
+                <a href="{% url 'contactus' %}" class="btn-luxury-outline" style="padding: 13px 28px; font-size: 0.95rem;">
+                    Book Showroom Viewing
+                </a>
+            </div>
+
+            <!-- Minimalist Accordions -->
+            <div class="border-bottom" style="border-color: var(--border-subtle) !important;">
+                <!-- Accordion 1 -->
+                <div class="spec-accordion-item">
+                    <div class="spec-accordion-header" onclick="toggleAccordion('acc-1', this)">
+                        <span>Materials & Craftsmanship</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; transition: transform 0.3s var(--ease-out);"></i>
+                    </div>
+                    <div id="acc-1" class="spec-accordion-body" style="display: none;">
+                        Frame crafted from kiln-dried solid European white oak and engineered birch laminate. Cushioned with multi-density high-resilience foam and recycled goose-down alternative padding. Upholstered in durable, stain-resistant Belgian bouclé.
+                    </div>
+                </div>
+
+                <!-- Accordion 2 -->
+                <div class="spec-accordion-item">
+                    <div class="spec-accordion-header" onclick="toggleAccordion('acc-2', this)">
+                        <span>White-Glove Dimensions & Delivery</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; transition: transform 0.3s var(--ease-out);"></i>
+                    </div>
+                    <div id="acc-2" class="spec-accordion-body" style="display: none;">
+                        <strong>Overall Dimensions:</strong> 88cm W x 82cm D x 76cm H<br>
+                        <strong>Seat Height:</strong> 42cm | <strong>Seat Depth:</strong> 58cm<br>
+                        Delivered via our dedicated white-glove team directly to your room of choice, including packaging removal and complimentary placement.
+                    </div>
+                </div>
+
+                <!-- Accordion 3 -->
+                <div class="spec-accordion-item">
+                    <div class="spec-accordion-header" onclick="toggleAccordion('acc-3', this)">
+                        <span>10-Year Structural Guarantee</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.8rem; transition: transform 0.3s var(--ease-out);"></i>
+                    </div>
+                    <div id="acc-3" class="spec-accordion-body" style="display: none;">
+                        Every piece is guaranteed for 10 years against internal timber defects, joint failure, and spring displacement under residential living conditions.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
+<script>
+function selectFabric(name, element) {
+    document.getElementById('selected-fabric-name').innerText = name;
+    document.querySelectorAll('.swatch-circle').forEach(function(el) {
+        el.classList.remove('active');
+    });
+    element.querySelector('.swatch-circle').classList.add('active');
+}
+
+function toggleAccordion(id, header) {
+    var body = document.getElementById(id);
+    var icon = header.querySelector('i');
+    if (body.style.display === 'none' || body.style.display === '') {
+        body.style.display = 'block';
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        body.style.display = 'none';
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+</script>
+
 {% endblock content %}
-
-
