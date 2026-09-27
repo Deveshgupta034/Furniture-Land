@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<div class="product-detail-layout">
+<div class="product-detail-layout pt-2">
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb" style="background: transparent; padding: 0; font-size: 0.85rem;">
@@ -18,8 +18,11 @@
     <div class="row g-5 align-items-start">
         <!-- Left: Product Image / Showcase (Matching Mockup 2) -->
         <div class="col-lg-6">
-            <div class="detail-gallery-box">
-                <img src="{{product.imageURL}}" alt="{{product.name}}" id="main-product-image">
+            <div class="detail-gallery-box" style="position: relative; overflow: hidden; background: #FAF8F5;">
+                <img src="{{product.imageURL}}" alt="{{product.name}}" id="main-product-image" style="transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);">
+                <div id="image-color-badge" class="atelier-badge" style="position: absolute; bottom: 20px; left: 20px; background: rgba(255,255,255,0.9); margin-bottom: 0;">
+                    Sand Bouclé
+                </div>
             </div>
             
             <div class="d-flex justify-content-between align-items-center mt-3 px-2 text-muted" style="font-size: 0.8rem;">
@@ -57,7 +60,7 @@
             <!-- Textile / Finish Swatches -->
             <div class="mb-4">
                 <div class="swatch-group-label">
-                    SELECT TEXTILE: <span id="selected-fabric-name" style="color: var(--text-primary); font-weight: 700;">Sand Bouclé</span>
+                    SELECT TEXTILE COLOR: <span id="selected-fabric-name" style="color: var(--text-primary); font-weight: 700;">Sand Bouclé</span>
                 </div>
                 <div class="swatches-row">
                     <div class="swatch-item" onclick="selectFabric('Sand Bouclé', this)">
@@ -143,12 +146,35 @@
 </div>
 
 <script>
+const fabricImages = {
+    'Sand Bouclé': "{% static 'images/sorensen_sand.jpg' %}",
+    'Oatmeal Linen': "{% static 'images/sorensen_oatmeal.jpg' %}",
+    'Espresso Velvet': "{% static 'images/sorensen_espresso.jpg' %}",
+    'Nordic Olive': "{% static 'images/sorensen_olive.jpg' %}"
+};
+
 function selectFabric(name, element) {
     document.getElementById('selected-fabric-name').innerText = name;
     document.querySelectorAll('.swatch-circle').forEach(function(el) {
         el.classList.remove('active');
     });
     element.querySelector('.swatch-circle').classList.add('active');
+
+    // Update color badge
+    const badge = document.getElementById('image-color-badge');
+    if (badge) badge.innerText = name;
+
+    // Smoothly swap product image
+    const mainImg = document.getElementById('main-product-image');
+    if (mainImg && fabricImages[name]) {
+        mainImg.style.opacity = '0.2';
+        mainImg.style.transform = 'scale(0.97)';
+        setTimeout(function() {
+            mainImg.src = fabricImages[name];
+            mainImg.style.opacity = '1';
+            mainImg.style.transform = 'scale(1)';
+        }, 180);
+    }
 }
 
 function toggleAccordion(id, header) {

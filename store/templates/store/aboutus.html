@@ -1,23 +1,65 @@
 {% extends 'store/main.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-<title>{% block title %}Furnitureland - About Us{% endblock %}</title>
 
-{% block content%}
-  <style>
-    body{
-      background:url("{%static 'images/aboutus.jpg'%}");
-      background-size: cover;
-    }
-  </style>
-    <div class="about">
-        <div class="aboutus-detail">
-            <h2>About Us</h2>
-            <p>Hello everyone ! 
-            Furnitureland by Design is an online furniture/home decor retailer. We began as a regular Brick and Mortar Furnitureland located in India offering our customers brand name furniture at affordable prices. Our retail locations are proudly serving residents of India.
-            Home Furniture by Design website is aimed to provide you with the latest in home furnishings, home decor and accessories at a price you can afford. We always carry products that will be the focus of your home's décor with superior selection, value, and quality.
-            buyers face some issues regarding prices and lack of information while offline shopping.
+{% block title %}Philosophy & Heritage | Furnitureland Atelier{% endblock %}
+
+{% block content %}
+<div class="container py-5 my-2" style="max-width: 1200px;">
+    <!-- Page Header -->
+    <div class="text-center mb-5 pb-3">
+        <span class="atelier-badge"><i class="fas fa-compass me-1 text-warning"></i> Philosophy & Heritage</span>
+        <h1 style="font-family: var(--font-heading); font-size: clamp(2.4rem, 5vw, 3.6rem); letter-spacing: -0.02em; margin-bottom: 16px;">
+            Form follows feeling.<br>
+            <span style="font-style: italic; color: var(--accent-primary);">Materials endure generations.</span>
+        </h1>
+        <p style="color: var(--text-secondary); max-width: 680px; margin: 0 auto; font-size: 1.1rem; line-height: 1.75;">
+            Founded with a singular architectural conviction: the objects that inhabit our domestic sanctum should elevate daily rituals through tactile warmth, uncompromised joinery, and sustainable forestry.
+        </p>
+    </div>
+
+    <!-- Editorial Story Section -->
+    <div class="row g-5 align-items-center mb-5 pb-5">
+        <div class="col-lg-6">
+            <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+                <img src="{% static 'images/hero_loft.jpg' %}" alt="Atelier Interior" style="width: 100%; height: 460px; object-fit: cover;">
+            </div>
+        </div>
+        <div class="col-lg-6 ps-lg-5">
+            <span class="atelier-badge">The Craft Manifesto</span>
+            <h2 style="font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 20px;">
+                Where Scandinavian quietude meets bespoke timber craft.
+            </h2>
+            <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 20px;">
+                Every creation starts with sustainably harvested European white oak and travertine stone slabs selected by hand. We reject fast furniture obsolescence. Instead, each seam is double-stitched with tactile Belgian bouclé and finished with organic non-toxic beeswax.
             </p>
+            <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 30px;">
+                From our design studios in Copenhagen to private residences across the globe, our pieces are crafted not merely to fill space, but to anchor memory.
+            </p>
+            <div class="d-flex gap-3">
+                <a href="{% url 'store' %}#collection" class="btn-luxury">Explore Collection</a>
+                <a href="{% url 'contactus' %}" class="btn-luxury-outline">Visit Showroom</a>
+            </div>
         </div>
     </div>
-{% endblock content%}
+
+    <!-- Stats & Commitments Banner -->
+    <div class="row g-4 text-center py-5 border-top border-bottom" style="border-color: var(--border-subtle) !important;">
+        <div class="col-md-3 col-6">
+            <h2 style="font-family: var(--font-heading); font-size: 2.8rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 4px;">10-Yr</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Structural Frame Guarantee</p>
+        </div>
+        <div class="col-md-3 col-6">
+            <h2 style="font-family: var(--font-heading); font-size: 2.8rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 4px;">100%</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">FSC® Certified Timber</p>
+        </div>
+        <div class="col-md-3 col-6">
+            <h2 style="font-family: var(--font-heading); font-size: 2.8rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 4px;">25+</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Generational Artisans</p>
+        </div>
+        <div class="col-md-3 col-6">
+            <h2 style="font-family: var(--font-heading); font-size: 2.8rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 4px;">4.9</h2>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Client Satisfaction Rating</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
