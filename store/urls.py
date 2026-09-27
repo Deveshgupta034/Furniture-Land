@@ -35,6 +35,7 @@ urlpatterns = [
 	path('update_item/',views.updateItem, name="update_item"),
 	path('process_order/',views.processOrder, name="process_order"),
 	path('product_view/<str:pk>',views.productView, name="product_view"),
+	path('product_view/<str:pk>/',views.productView, name="product_view_slash"),
 
 
 ]
