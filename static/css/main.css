@@ -109,30 +109,34 @@ a:hover {
 }
 
 .navbar-island {
-    max-width: 1140px;
+    max-width: 1260px;
+    width: 100%;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.90);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.95);
     border-radius: var(--radius-pill);
     box-shadow: 0 16px 36px -10px rgba(28, 26, 23, 0.08), 0 1px 2px rgba(28, 26, 23, 0.02);
-    padding: 10px 24px;
+    padding: 8px 22px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     transition: all 0.3s var(--ease-out);
 }
 
 .navbar-brand-custom {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     color: var(--text-primary) !important;
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 .navbar-brand-custom span {
     color: var(--accent-primary);
@@ -142,20 +146,22 @@ a:hover {
 .nav-links-island {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     list-style: none;
     margin: 0;
     padding: 0;
+    flex-shrink: 0;
 }
 
 .nav-link-custom {
     font-family: var(--font-body);
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 500;
     color: var(--text-secondary) !important;
-    padding: 7px 15px !important;
+    padding: 6px 11px !important;
     border-radius: var(--radius-pill);
     transition: all 0.25s var(--ease-out);
+    white-space: nowrap;
 }
 .nav-link-custom:hover {
     color: var(--text-primary) !important;
@@ -165,18 +171,20 @@ a:hover {
 /* Search Bar in Island */
 .search-form-island {
     position: relative;
-    width: 160px;
-    transition: width 0.35s var(--ease-out);
+    width: 135px;
+    min-width: 110px;
+    flex-shrink: 0;
+    transition: width 0.3s var(--ease-out);
 }
 .search-form-island:focus-within {
-    width: 220px;
+    width: 180px;
 }
 .search-input-island {
     background: rgba(28, 26, 23, 0.04) !important;
     border: 1px solid transparent !important;
     border-radius: var(--radius-pill) !important;
-    padding: 6px 14px 6px 32px !important;
-    font-size: 0.84rem !important;
+    padding: 6px 12px 6px 28px !important;
+    font-size: 0.82rem !important;
     color: var(--text-primary) !important;
     box-shadow: none !important;
     transition: all 0.25s var(--ease-out) !important;
@@ -188,11 +196,11 @@ a:hover {
 }
 .search-icon-island {
     position: absolute;
-    left: 11px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-tertiary);
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     pointer-events: none;
 }
 
@@ -231,6 +239,26 @@ a:hover {
     align-items: center;
     justify-content: center;
     border: 2px solid #FFFFFF;
+}
+
+@media (max-width: 1200px) {
+    .navbar-island {
+        padding: 6px 16px;
+        gap: 8px;
+    }
+    .navbar-brand-custom {
+        font-size: 1.4rem;
+    }
+    .nav-link-custom {
+        padding: 5px 8px !important;
+        font-size: 0.82rem;
+    }
+    .search-form-island {
+        width: 110px;
+    }
+    .search-form-island:focus-within {
+        width: 150px;
+    }
 }
 
 /* ==========================================================================
@@ -374,6 +402,8 @@ a:hover {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    white-space: nowrap !important;
+    flex-shrink: 0;
     box-shadow: var(--shadow-sm);
     transition: all 0.3s var(--ease-out);
     cursor: pointer;
@@ -392,6 +422,8 @@ a:hover {
     border-radius: var(--radius-pill);
     font-weight: 600;
     font-size: 0.9rem;
+    white-space: nowrap !important;
+    flex-shrink: 0;
     transition: all 0.3s var(--ease-out);
     display: inline-flex;
     align-items: center;
