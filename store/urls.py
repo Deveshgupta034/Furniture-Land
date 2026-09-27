@@ -28,13 +28,13 @@ urlpatterns = [
 	path('decor/', views.decor, name="decor"),
 	path('kids/', views.kids, name="kids"),
 	path('aboutus/', views.about, name="aboutus"),
-	path('conatactus/', views.contact, name="contactus"),
-
-
+	path('contactus/', views.contact, name="contactus"),
+	path('conatactus/', views.contact, name="conatactus_legacy"),
 
 	path('update_item/',views.updateItem, name="update_item"),
 	path('process_order/',views.processOrder, name="process_order"),
 	path('product_view/<str:pk>',views.productView, name="product_view"),
+	path('product_view/<str:pk>/',views.productView, name="product_view_slash"),
 
 
 ]
