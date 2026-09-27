@@ -51,11 +51,8 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-baseline mb-2">
                     <span class="atelier-badge mb-0" style="font-size: 0.68rem; padding: 2px 8px;">Atelier Edition</span>
-                    <div class="d-flex gap-1 align-items-center" title="Available in 4 curated textile finishes">
-                        <span style="width: 9px; height: 9px; border-radius: 50%; background: #E8E3DC; border: 1px solid rgba(0,0,0,0.15); display: inline-block;"></span>
-                        <span style="width: 9px; height: 9px; border-radius: 50%; background: #D4C5B3; border: 1px solid rgba(0,0,0,0.15); display: inline-block;"></span>
-                        <span style="width: 9px; height: 9px; border-radius: 50%; background: #3F332C; display: inline-block;"></span>
-                        <span style="width: 9px; height: 9px; border-radius: 50%; background: #5D6353; display: inline-block;"></span>
+                    <div style="color: #D4AF37; font-size: 0.8rem;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                     </div>
                 </div>
                 <h4><a href="{% url 'product_view' product.name %}">{{product.name}}</a></h4>
@@ -102,15 +99,6 @@
                     <a href="{% url 'product_view' product.name %}" style="display: block; width: 100%; height: 100%; text-align: center;">
                         <img src="{{product.imageURL}}" alt="{{product.name}}" style="max-height: 220px; max-width: 90%; object-fit: contain; transition: transform 0.4s var(--ease-out);" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
                     </a>
-                </div>
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="atelier-badge mb-0" style="font-size: 0.65rem; padding: 2px 7px;">Living Piece</span>
-                    <div class="d-flex gap-1 align-items-center" title="4 Curated Finishes">
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #E8E3DC; border: 1px solid rgba(0,0,0,0.15); display: inline-block;"></span>
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #D4C5B3; border: 1px solid rgba(0,0,0,0.15); display: inline-block;"></span>
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #3F332C; display: inline-block;"></span>
-                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #5D6353; display: inline-block;"></span>
-                    </div>
                 </div>
                 <h4><a href="{% url 'product_view' product.name %}">{{product.name}}</a></h4>
                 <p>{{product.desc|default:"Sculpted with organic tactile materials for timeless spaces."}}</p>
