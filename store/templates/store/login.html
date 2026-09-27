@@ -1,42 +1,66 @@
 {% extends 'store/main.html' %}
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-<title>{% block title %}Furnitureland - Login{% endblock %}</title>
+{% block title %}Sign In | Furnitureland Atelier{% endblock %}
 
+{% block content %}
+<div class="auth-page-wrapper py-5 my-2">
+    <div class="auth-card mx-auto">
+        <div class="text-center mb-4 pb-2">
+            <span class="atelier-badge mb-3"><i class="fas fa-key me-1 text-warning"></i> Member Access</span>
+            <h1 style="font-family: var(--font-heading); font-size: 2.2rem; letter-spacing: -0.02em; margin-bottom: 8px;">
+                Welcome Back
+            </h1>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0;">
+                Access your curated collection, orders, and private showroom viewings.
+            </p>
+        </div>
 
-{% block content%}
-<style>
-    body{
-      background-color:lightBlue;
-    }
-  </style>
-<div class="center">
-    <h1 style="font-size:28px;">Login</h1>
-    <form method="POST">
-    {% csrf_token %}
-        <div class="txt_field">
-            <input type="text" name="loginusername" required>
-            <span></span>
-            <label>Username</label>
+        {% if messages %}
+        <div class="mb-4">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show border-0" role="alert" style="border-radius: var(--radius-sm); background: #FAF0E6; color: var(--accent-hover); font-size: 0.9rem;">
+                <i class="fas fa-info-circle me-2"></i> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
         </div>
-        <div class="txt_field">
-            <input type="password" name="loginpassword" required>
-            <span></span>
-            <label>Password</label>
-         
+        {% endif %}
+
+        <form method="POST" class="auth-form">
+            {% csrf_token %}
+            <div class="custom-form-group mb-3">
+                <label class="custom-form-label" for="loginusername">Username</label>
+                <div style="position: relative;">
+                    <i class="far fa-user" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-tertiary); font-size: 0.9rem;"></i>
+                    <input type="text" id="loginusername" name="loginusername" class="custom-form-control" style="padding-left: 42px;" placeholder="Your username" required autofocus>
+                </div>
+            </div>
+
+            <div class="custom-form-group mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label class="custom-form-label mb-0" for="loginpassword">Password</label>
+                    <a href="{% url 'forgot' %}" style="font-size: 0.82rem; color: var(--accent-primary); font-weight: 500;">Forgot password?</a>
+                </div>
+                <div style="position: relative;">
+                    <i class="fas fa-lock" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-tertiary); font-size: 0.9rem;"></i>
+                    <input type="password" id="loginpassword" name="loginpassword" class="custom-form-control" style="padding-left: 42px;" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-luxury w-100 py-3 mt-3" style="font-size: 0.95rem; justify-content: center;">
+                Sign In to Atelier <i class="fas fa-arrow-right ms-2" style="font-size: 0.8rem;"></i>
+            </button>
+        </form>
+
+        <div class="text-center mt-4 pt-3 border-top" style="border-color: var(--border-subtle) !important;">
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
+                Not a member yet? 
+                <a href="{% url 'signup' %}" style="color: var(--text-primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px;">
+                    Create an account
+                </a>
+            </p>
         </div>
-        <div class="pass"><a class="pass" href="{% url 'forgot' %}" >Forgot Password?</a></div>
-        <input type="submit" value="Login" >
-        <div class="signup_link"></br>
-            Not a member? <a href="{% url 'signup' %}">Sign Up</a>
-        </div>
-    </form>
+    </div>
 </div>
-
-
-
-
-
-
-{% endblock content%}
+{% endblock content %}

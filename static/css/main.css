@@ -592,20 +592,25 @@ a:hover {
     margin-bottom: 10px;
 }
 .auth-page-wrapper {
-    min-height: 80vh;
+    min-height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 16px;
+    padding: 70px 16px 90px;
+    background: radial-gradient(circle at 50% 30%, rgba(243, 239, 233, 0.7) 0%, transparent 70%);
 }
 .auth-card {
-    background: var(--bg-surface);
+    background: #FFFFFF;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 24px 60px -15px rgba(28, 26, 23, 0.1), 0 4px 12px rgba(28, 26, 23, 0.03);
     width: 100%;
     max-width: 480px;
-    padding: 42px 36px;
+    padding: 44px 38px;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+}
+.auth-card:hover {
+    box-shadow: 0 32px 70px -15px rgba(28, 26, 23, 0.14);
 }
 .custom-form-group {
     margin-bottom: 20px;
