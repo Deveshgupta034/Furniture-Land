@@ -147,35 +147,62 @@
 
 <script>
 const fabricImages = {
-    'Sand Bouclé': "{% static 'images/sorensen_sand.jpg' %}",
-    'Oatmeal Linen': "{% static 'images/sorensen_oatmeal.jpg' %}",
-    'Espresso Velvet': "{% static 'images/sorensen_espresso.jpg' %}",
-    'Nordic Olive': "{% static 'images/sorensen_olive.jpg' %}"
+    'Sand Bouclé': "{% static 'images/sorensen_sand.jpg' %}?v=5.0",
+    'Oatmeal Linen': "{% static 'images/sorensen_oatmeal.jpg' %}?v=5.0",
+    'Espresso Velvet': "{% static 'images/sorensen_espresso.jpg' %}?v=5.0",
+    'Nordic Olive': "{% static 'images/sorensen_olive.jpg' %}?v=5.0"
+};
+
+const fabricFilters = {
+    'Sand Bouclé': 'none',
+    'Oatmeal Linen': 'sepia(0.38) saturate(1.25) brightness(0.95) contrast(1.05)',
+    'Espresso Velvet': 'brightness(0.55) contrast(1.35) saturate(0.65)',
+    'Nordic Olive': 'hue-rotate(65deg) saturate(1.25) brightness(0.92) contrast(1.08)'
 };
 
 function selectFabric(name, element) {
-    document.getElementById('selected-fabric-name').innerText = name;
+    // 1. Update text and active indicator
+    const labelEl = document.getElementById('selected-fabric-name');
+    if (labelEl) labelEl.innerText = name;
+
     document.querySelectorAll('.swatch-circle').forEach(function(el) {
         el.classList.remove('active');
     });
-    element.querySelector('.swatch-circle').classList.add('active');
+    if (element) {
+        element.querySelector('.swatch-circle').classList.add('active');
+    }
 
-    // Update color badge
+    // 2. Update on-image color badge
     const badge = document.getElementById('image-color-badge');
     if (badge) badge.innerText = name;
 
-    // Smoothly swap product image
     const mainImg = document.getElementById('main-product-image');
-    if (mainImg && fabricImages[name]) {
-        mainImg.style.opacity = '0.2';
+    if (!mainImg) return;
+
+    const productName = "{{product.name|escapejs}}".toLowerCase();
+    const isSorensen = productName.includes('sorensen') || productName.includes('armchair');
+
+    if (isSorensen && fabricImages[name]) {
+        // Swap high-res studio photograph for Sorensen armchair
+        mainImg.style.filter = 'none';
+        mainImg.style.opacity = '0.3';
         mainImg.style.transform = 'scale(0.97)';
         setTimeout(function() {
             mainImg.src = fabricImages[name];
             mainImg.style.opacity = '1';
             mainImg.style.transform = 'scale(1)';
         }, 180);
+    } else {
+        // Apply responsive fabric color grade for other catalog items
+        mainImg.style.transition = 'filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s ease';
+        mainImg.style.transform = 'scale(0.98)';
+        setTimeout(function() {
+            mainImg.style.filter = fabricFilters[name] || 'none';
+            mainImg.style.transform = 'scale(1)';
+        }, 150);
     }
 }
+
 
 function toggleAccordion(id, header) {
     var body = document.getElementById(id);

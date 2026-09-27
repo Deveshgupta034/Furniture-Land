@@ -260,7 +260,7 @@ a:hover {
 .hero-mockup-bg {
     position: absolute;
     inset: 0;
-    background-image: url('../images/hero_loft.jpg');
+    background-image: url('../images/hero_loft.jpg?v=5.0');
     background-size: cover;
     background-position: center 30%;
     z-index: 1;
@@ -269,7 +269,7 @@ a:hover {
 .hero-mockup-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(250, 248, 245, 0.2) 0%, rgba(250, 248, 245, 0.5) 60%, rgba(250, 248, 245, 0.95) 100%);
+    background: linear-gradient(90deg, rgba(250, 248, 245, 0.97) 0%, rgba(250, 248, 245, 0.90) 45%, rgba(250, 248, 245, 0.35) 75%, rgba(250, 248, 245, 0.08) 100%);
     z-index: 2;
 }
 

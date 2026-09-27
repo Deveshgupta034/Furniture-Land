@@ -24,7 +24,7 @@ from .utils import cartData,guestOrder
 def store(request):
      data = cartData(request)
      cartItems = data['cartItems']    
-     products = Product.objects.all()
+     products = Product.objects.all().order_by('-id')
      context = {'products': products, 'cartItems': cartItems }
      return render(request, 'store/store.html', context)
 
@@ -131,7 +131,7 @@ def kids(request):
      cartItems = data['cartItems']
      order = data['order']
      items = data['items']
-     products = Product.objects.filter(category=1)
+     products = Product.objects.filter(category=1).order_by('-id')
      context = {'items':items, 'order':order, 'cartItems':cartItems, 'products': products}
      return render(request,'store/kids.html', context)
 
@@ -141,7 +141,7 @@ def sofa(request):
      cartItems = data['cartItems']
      order = data['order']
      items = data['items']
-     products = Product.objects.filter(category=3)
+     products = Product.objects.filter(category=3).order_by('-id')
      context = {'items':items, 'order':order, 'cartItems':cartItems, 'products': products}
      return render(request,'store/sofa.html', context)
 
@@ -151,7 +151,7 @@ def dining_table(request):
      cartItems = data['cartItems']
      order = data['order']
      items = data['items']
-     products = Product.objects.filter(category=4)
+     products = Product.objects.filter(category=4).order_by('-id')
      context = {'items':items, 'order':order, 'cartItems':cartItems, 'products': products}
      return render(request,'store/dining_table.html', context)
 
@@ -161,7 +161,7 @@ def decor(request):
      cartItems = data['cartItems']
      order = data['order']
      items = data['items']
-     products = Product.objects.filter(category=5)
+     products = Product.objects.filter(category=5).order_by('-id')
      context = {'items':items, 'order':order, 'cartItems':cartItems, 'products': products}
      return render(request,'store/decor.html', context)
 
