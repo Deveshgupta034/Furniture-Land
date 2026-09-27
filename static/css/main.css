@@ -109,30 +109,34 @@ a:hover {
 }
 
 .navbar-island {
-    max-width: 1140px;
+    max-width: 1260px;
+    width: 100%;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.90);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.95);
     border-radius: var(--radius-pill);
     box-shadow: 0 16px 36px -10px rgba(28, 26, 23, 0.08), 0 1px 2px rgba(28, 26, 23, 0.02);
-    padding: 10px 24px;
+    padding: 8px 22px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     transition: all 0.3s var(--ease-out);
 }
 
 .navbar-brand-custom {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     color: var(--text-primary) !important;
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 .navbar-brand-custom span {
     color: var(--accent-primary);
@@ -142,20 +146,22 @@ a:hover {
 .nav-links-island {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     list-style: none;
     margin: 0;
     padding: 0;
+    flex-shrink: 0;
 }
 
 .nav-link-custom {
     font-family: var(--font-body);
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 500;
     color: var(--text-secondary) !important;
-    padding: 7px 15px !important;
+    padding: 6px 11px !important;
     border-radius: var(--radius-pill);
     transition: all 0.25s var(--ease-out);
+    white-space: nowrap;
 }
 .nav-link-custom:hover {
     color: var(--text-primary) !important;
@@ -165,18 +171,20 @@ a:hover {
 /* Search Bar in Island */
 .search-form-island {
     position: relative;
-    width: 160px;
-    transition: width 0.35s var(--ease-out);
+    width: 135px;
+    min-width: 110px;
+    flex-shrink: 0;
+    transition: width 0.3s var(--ease-out);
 }
 .search-form-island:focus-within {
-    width: 220px;
+    width: 180px;
 }
 .search-input-island {
     background: rgba(28, 26, 23, 0.04) !important;
     border: 1px solid transparent !important;
     border-radius: var(--radius-pill) !important;
-    padding: 6px 14px 6px 32px !important;
-    font-size: 0.84rem !important;
+    padding: 6px 12px 6px 28px !important;
+    font-size: 0.82rem !important;
     color: var(--text-primary) !important;
     box-shadow: none !important;
     transition: all 0.25s var(--ease-out) !important;
@@ -188,11 +196,11 @@ a:hover {
 }
 .search-icon-island {
     position: absolute;
-    left: 11px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-tertiary);
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     pointer-events: none;
 }
 
@@ -231,6 +239,26 @@ a:hover {
     align-items: center;
     justify-content: center;
     border: 2px solid #FFFFFF;
+}
+
+@media (max-width: 1200px) {
+    .navbar-island {
+        padding: 6px 16px;
+        gap: 8px;
+    }
+    .navbar-brand-custom {
+        font-size: 1.4rem;
+    }
+    .nav-link-custom {
+        padding: 5px 8px !important;
+        font-size: 0.82rem;
+    }
+    .search-form-island {
+        width: 110px;
+    }
+    .search-form-island:focus-within {
+        width: 150px;
+    }
 }
 
 /* ==========================================================================
@@ -374,6 +402,8 @@ a:hover {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    white-space: nowrap !important;
+    flex-shrink: 0;
     box-shadow: var(--shadow-sm);
     transition: all 0.3s var(--ease-out);
     cursor: pointer;
@@ -392,6 +422,8 @@ a:hover {
     border-radius: var(--radius-pill);
     font-weight: 600;
     font-size: 0.9rem;
+    white-space: nowrap !important;
+    flex-shrink: 0;
     transition: all 0.3s var(--ease-out);
     display: inline-flex;
     align-items: center;
@@ -560,20 +592,25 @@ a:hover {
     margin-bottom: 10px;
 }
 .auth-page-wrapper {
-    min-height: 80vh;
+    min-height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 16px;
+    padding: 70px 16px 90px;
+    background: radial-gradient(circle at 50% 30%, rgba(243, 239, 233, 0.7) 0%, transparent 70%);
 }
 .auth-card {
-    background: var(--bg-surface);
+    background: #FFFFFF;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 24px 60px -15px rgba(28, 26, 23, 0.1), 0 4px 12px rgba(28, 26, 23, 0.03);
     width: 100%;
     max-width: 480px;
-    padding: 42px 36px;
+    padding: 44px 38px;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+}
+.auth-card:hover {
+    box-shadow: 0 32px 70px -15px rgba(28, 26, 23, 0.14);
 }
 .custom-form-group {
     margin-bottom: 20px;
@@ -608,3 +645,198 @@ a:hover {
     padding: 60px 0 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+/* ==========================================================================
+   KINETIC MOTION SUITE (pbakaus/impeccable + leonxlnx/taste-skill)
+   ========================================================================== */
+
+/* 1. Custom Minimalist Luxury Cursor */
+.atelier-cursor-dot {
+    position: fixed;
+    top: -4px;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.05s linear, opacity 0.2s ease, width 0.2s ease, height 0.2s ease;
+    mix-blend-mode: multiply;
+}
+.atelier-cursor-ring {
+    position: fixed;
+    top: -20px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid rgba(194, 120, 62, 0.45);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transition: width 0.3s var(--ease-out), height 0.3s var(--ease-out), border-color 0.3s ease, background 0.3s ease;
+}
+.atelier-cursor-ring.active {
+    width: 64px;
+    height: 64px;
+    top: -32px;
+    left: -32px;
+    border-color: var(--accent-primary);
+    background: rgba(194, 120, 62, 0.08);
+    backdrop-filter: blur(2px);
+}
+.atelier-cursor-ring.clicking {
+    transform: scale(0.8) !important;
+}
+
+/* 2. 3D Tilt Specular Glare Overlay */
+.card-specular-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    mix-blend-mode: overlay;
+}
+
+/* 3. Hero Interactive Dynamic Lighting Spotlight */
+.hero-interactive-spotlight {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 240, 220, 0.35) 0%, rgba(212, 175, 55, 0.12) 35%, transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+    filter: blur(40px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    will-change: transform;
+}
+
+/* 4. Scroll Reveal Keyframe Classes */
+.kinetic-reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.kinetic-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 5. Scrolled State for Floating Island Navbar */
+.navbar-island.navbar-scrolled {
+    padding: 8px 22px;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 16px 40px rgba(28, 26, 23, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-color: rgba(28, 26, 23, 0.12);
+}
+
+/* 6. Kinetic Add-To-Bag Parabolic Particle & Shockwave */
+.kinetic-cart-particle {
+    position: fixed;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--accent-primary), #E5A96A);
+    color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 0 8px 24px rgba(194, 120, 62, 0.45);
+    margin-left: -14px;
+    margin-top: -14px;
+}
+.kinetic-shockwave {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(194, 120, 62, 0.3);
+    pointer-events: none;
+    transform: scale(0);
+    animation: shockwaveExpand 0.55s ease-out forwards;
+}
+@keyframes shockwaveExpand {
+    to {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+/* 7. Cart Bounce Physics */
+.cart-bounce-spring {
+    animation: cartSpringJump 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes cartSpringJump {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.28) rotate(-6deg); }
+    60% { transform: scale(0.92) rotate(4deg); }
+    80% { transform: scale(1.08) rotate(-1deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.badge-pop-spring {
+    animation: badgePopJump 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes badgePopJump {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.6); background-color: #2D6A4F; }
+    100% { transform: scale(1); }
+}
+
+/* 8. Swatch Ripple Ring */
+.swatch-ripple-ring {
+    position: absolute;
+    inset: -6px;
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: rippleExpand 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes rippleExpand {
+    0% { transform: scale(0.7); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+.image-color-shifting {
+    animation: imageBreathPulse 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes imageBreathPulse {
+    0% { transform: scale(1); }
+    40% { transform: scale(0.965); filter: contrast(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* 9. Floating Accent Text Breathing */
+.accent-script {
+    display: inline-block;
+    transition: transform 0.4s var(--ease-out);
+}
+.accent-script:hover {
+    transform: translateY(-2px) scale(1.04);
+}
+
+/* 10. Floating Product Card Micro-Refinements */
+.floating-product-card {
+    will-change: transform, box-shadow;
+    transform-style: preserve-3d;
+}
+.floating-product-card:hover {
+    box-shadow: 0 24px 48px -12px rgba(28, 26, 23, 0.12), 0 8px 16px -4px rgba(28, 26, 23, 0.04) !important;
+}
+
+/* Safe touch fallback */
+@media (pointer: coarse) {
+    .atelier-cursor-dot, .atelier-cursor-ring {
+        display: none !important;
+    }
+}
+
