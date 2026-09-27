@@ -102,19 +102,20 @@ a:hover {
 
 .navbar-island-wrapper {
     position: sticky;
-    top: 16px;
+    top: 14px;
     z-index: 1050;
     width: 100%;
-    padding: 0 16px;
+    padding: 0 20px;
+    margin-bottom: 10px;
 }
 
 .navbar-island {
-    max-width: 1140px;
+    max-width: 1160px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(28, 26, 23, 0.08);
     border-radius: var(--radius-pill);
     box-shadow: 0 16px 36px -10px rgba(28, 26, 23, 0.08), 0 1px 2px rgba(28, 26, 23, 0.02);
     padding: 10px 24px;
@@ -260,16 +261,16 @@ a:hover {
 .hero-mockup-bg {
     position: absolute;
     inset: 0;
-    background-image: url('../images/hero_loft.jpg');
+    background-image: url('../images/hero_loft.jpg?v=3.0');
     background-size: cover;
-    background-position: center 30%;
+    background-position: right 45%;
     z-index: 1;
 }
 
 .hero-mockup-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(250, 248, 245, 0.2) 0%, rgba(250, 248, 245, 0.5) 60%, rgba(250, 248, 245, 0.95) 100%);
+    background: linear-gradient(90deg, rgba(250, 248, 245, 0.97) 0%, rgba(250, 248, 245, 0.90) 38%, rgba(250, 248, 245, 0.35) 70%, rgba(250, 248, 245, 0.05) 100%);
     z-index: 2;
 }
 
